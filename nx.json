@@ -5,12 +5,8 @@
     "default": {
       "runner": "nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "deploy",
-          "dev"
-        ],
-        "accessToken": "NTExY2EwYjUtNTRhZC00ZTczLWJmZTQtYWFiODJmN2NlY2UwfHJlYWQtd3JpdGU="
+        "cacheableOperations": ["build", "deploy", "dev"],
+        "accessToken": "YOUR_NX_CLOUD"
       }
     }
   },
