@@ -1,17 +1,18 @@
-# Next-Gen API v3
+# AWS Microservices with Nx
 
 ## Overview
 
-Next-Gen API v3 is a monorepo project built using Yarn workspaces and Nx. It includes multiple services like `order-service` and `user-service`, utilizing Serverless Framework to deploy AWS Lambda functions and API Gateway endpoints. This project also integrates continuous integration (CI) and continuous deployment (CD) pipelines using GitHub Actions. Automated testing is implemented with Jest, and code coverage reports are generated. The project is written in TypeScript.
+This a monorepo project built using Yarn workspaces and Nx. It includes multiple services like `order-service` and `user-service`, utilizing Serverless Framework to deploy AWS Lambda functions and API Gateway endpoints. This project also integrates continuous integration (CI) and continuous deployment (CD) pipelines using GitHub Actions. Automated testing is implemented with Jest, and code coverage reports are generated. The project is written in TypeScript.
 
 ## Table of Contents
 
-- [Next-Gen API v3](#next-gen-api-v3)
+- [AWS Microservices with Nx](#aws-microservices-with-nx)
   - [Overview](#overview)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Project Structure](#project-structure)
   - [Installation](#installation)
+- [aws-microservices-nx](#aws-microservices-nx)
 
 ## Features
 
@@ -23,7 +24,7 @@ Next-Gen API v3 is a monorepo project built using Yarn workspaces and Nx. It inc
 
 ## Project Structure
 
-next-gen-api-v3/
+aws-microservices-nx/
 ├── services/
 │ ├── order-service/
 │ │ ├── src/
@@ -53,8 +54,8 @@ next-gen-api-v3/
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/next-gen-api-v3.git
-   cd next-gen-api-v3
+   git clone https://github.com/goutham-05/aws-microservices-nx
+   cd aws-microservices-nx
 
    ```
 
@@ -141,4 +142,5 @@ Feel free to modify this template according to your project's specifics and need
 This `README.md` file includes all sections and detailed information to help users understand and work with your project effectively.
 
 ```
+
 # aws-microservices-nx
