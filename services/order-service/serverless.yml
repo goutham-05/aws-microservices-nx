@@ -1,0 +1,93 @@
+service: order-service
+
+frameworkVersion: "3.39.0"
+
+configValidationMode: error
+
+plugins:
+  - serverless-offline
+  - serverless-esbuild
+  - serverless-plugin-monorepo
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - sqs:SendMessage
+      Resource:
+        - Fn::GetAtt: [OrderQueue, Arn]
+    - Effect: Allow
+      Action:
+        - sns:Publish
+      Resource:
+        - Ref: OrderTopic
+
+custom:
+  serverless-offline:
+    runtime: nodejs16.x
+    httpPort: 4001
+    lambdaPort: 4003
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: true
+    exclude: ["aws-sdk"]
+    target: "node16"
+    platform: "node"
+
+functions:
+  createOrder:
+    handler: lib/createOrder/handler.handler
+    environment:
+      SQS_QUEUE_URL: { Ref: OrderQueue }
+      SNS_TOPIC_ARN: { Ref: OrderTopic }
+    events:
+      - http:
+          path: order
+          method: post
+
+  getOrder:
+    handler: lib/getOrder/handler.handler
+    events:
+      - http:
+          path: order/{id}
+          method: get
+
+  updateOrder:
+    handler: lib/updateOrder/handler.handler
+    events:
+      - http:
+          path: order/{id}
+          method: put
+
+  deleteOrder:
+    handler: lib/deleteOrder/handler.handler
+    events:
+      - http:
+          path: order/{id}
+          method: delete
+
+resources:
+  Resources:
+    OrderQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: order-queue
+
+    OrderTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: order-topic
+
+package:
+  individually: true
+
+useDotenv: true
+
+outputs:
+  ServiceEndpoint:
+    Description: "URL of the service endpoint"
+    Value:
+      Fn::Sub: "https://${ApiGatewayRestApi}.execute-api.${AWS::Region}.amazonaws.com/${sls:stage}/order"

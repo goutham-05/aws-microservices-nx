@@ -1,0 +1,34 @@
+{
+  "name": "order-service",
+  "root": "services/order-service",
+  "sourceRoot": "services/order-service/src",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsc --pretty",
+        "cwd": "services/order-service",
+        "parallel": false
+      },
+      "dependsOn": ["^build"]
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx serverless deploy",
+        "cwd": "services/order-service",
+        "parallel": false
+      },
+      "dependsOn": ["build"]
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx serverless offline",
+        "cwd": "services/order-service",
+        "parallel": false
+      },
+      "dependsOn": ["build"]
+    }
+  }
+}

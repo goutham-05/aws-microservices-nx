@@ -1,0 +1,43 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "npmScope": "my-monorepo",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "deploy",
+          "dev"
+        ],
+        "accessToken": "NTExY2EwYjUtNTRhZC00ZTczLWJmZTQtYWFiODJmN2NlY2UwfHJlYWQtd3JpdGU="
+      }
+    }
+  },
+  "projects": {
+    "order-service": {
+      "tags": []
+    },
+    "user-service": {
+      "tags": []
+    }
+  },
+  "targetDependencies": {
+    "build": [],
+    "deploy": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ],
+    "dev": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "affected": {
+    "defaultBase": "origin/develop"
+  }
+}
